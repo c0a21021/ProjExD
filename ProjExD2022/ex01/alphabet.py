@@ -1,6 +1,7 @@
 import random
 import datetime
 
+num_of_alphabet = 26
 tyousen_kaisu = 10
 ketuson_mozi = 2
 max_kaisu = 3
@@ -48,7 +49,7 @@ def kaitou(del_alf):
     
 
 if __name__ == "__main__":
-    alf_lst = ["a", "b", "c", "d", "e", "f", "g","h", "i", "j", "k", "l", "m","n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+    alf_lst = [chr(i + 65)for i in range(num_of_alphabet)]
     for i in range(max_kaisu):
         ans_lst = shutudai(alf_lst)
         flag = kaitou(ans_lst)
