@@ -14,16 +14,9 @@ def shutudai(alf_lst):
     [print(i, end = " ") for i in alf]
     print("\n欠損文字")
     [print(i, end = " ") for i in del_alf]
-    return del_alf
-    for i in alf:
-        if i in del_alf:
-            #print(i)
-            alf.remove(i)
-        else:
-            pass
     print("\n表示文字")
-    [print(i, end = " ") for i in alf]
-
+    [print(i, end = " ") for i in alf if i not in del_alf]
+    return del_alf
 
 
 def kaitou(del_alf):
