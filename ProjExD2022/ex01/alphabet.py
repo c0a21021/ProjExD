@@ -1,4 +1,5 @@
 import random
+import datetime
 
 tyousen_kaisu = 10
 ketuson_mozi = 2
@@ -25,6 +26,7 @@ def shutudai(alf_lst):
 
 
 def kaitou(del_alf):
+    st = datetime.datetime.now()
     flag = True
     ans = int(input("\n欠損文字列はいくつあるでしょうか？"))
     if ans == ketuson_mozi:
@@ -40,6 +42,8 @@ def kaitou(del_alf):
     else:
         print("不正解です。またチャレンジしてください")
         flag = False
+    ed = datetime.datetime.now()
+    print("回答時間：" + str((ed - st).seconds) + "秒")
     return flag
     
 
