@@ -48,3 +48,4 @@ if __name__ == "__main__":
         flag = kaitou(ans_lst)
         if flag == True:
             break
+        
