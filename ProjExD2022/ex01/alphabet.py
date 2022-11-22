@@ -1,7 +1,5 @@
 import random
-import datetime
 
-num_of_alphabet = 26
 tyousen_kaisu = 10
 ketuson_mozi = 2
 max_kaisu = 3
@@ -14,13 +12,19 @@ def shutudai(alf_lst):
     [print(i, end = " ") for i in alf]
     print("\n欠損文字")
     [print(i, end = " ") for i in del_alf]
-    print("\n表示文字")
-    [print(i, end = " ") for i in alf if i not in del_alf]
     return del_alf
+    for i in alf:
+        if i in del_alf:
+            #print(i)
+            alf.remove(i)
+        else:
+            pass
+    print("\n表示文字")
+    [print(i, end = " ") for i in alf]
+
 
 
 def kaitou(del_alf):
-    st = datetime.datetime.now()
     flag = True
     ans = int(input("\n欠損文字列はいくつあるでしょうか？"))
     if ans == ketuson_mozi:
@@ -36,16 +40,13 @@ def kaitou(del_alf):
     else:
         print("不正解です。またチャレンジしてください")
         flag = False
-    ed = datetime.datetime.now()
-    print("回答時間：" + str((ed - st).seconds) + "秒")
     return flag
     
 
 if __name__ == "__main__":
-    alf_lst = [chr(i + 65)for i in range(num_of_alphabet)]
+    alf_lst = ["a", "b", "c", "d", "e", "f", "g","h", "i", "j", "k", "l", "m","n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
     for i in range(max_kaisu):
         ans_lst = shutudai(alf_lst)
         flag = kaitou(ans_lst)
         if flag == True:
             break
-        
