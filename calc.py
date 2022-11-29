@@ -1,6 +1,5 @@
 #練習1
 import tkinter as tk
-import tkinter.messagebox as tkm
 root = tk.Tk()
 root.title("")
 root.geometry("400x600")
