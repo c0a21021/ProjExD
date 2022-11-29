@@ -34,11 +34,6 @@ entry = tk.Entry(justify = "right", width = 10, font = ("", 40))
 #entry.insert(tk.END, "")
 entry.grid(row = 0, column =0, columnspan = 3)
 
-#options = ["c", "x²", ""]
-#calc_op = ["÷", "x", "-", "+"]
-#for i in range(2):
-#    button = tk.Button(root, text = )
-
 
 #練習2
 r, c = 1,0
