@@ -36,17 +36,9 @@ entry.grid(row = 0, column =0, columnspan = 3)
 
 #練習2
 r, c = 1,0
-for num in range(9, -1, -1):
-    button = tk.Button(root, text =f"{num}", width = 4, height = 2, font=("", 30))
-    button.bind("<1>", button_click)
-    button.grid(row =r, column = c)
-    c+=1
-    if c%4 == 0:
-        r += 1
-        c = 0
 
 #練習5
-operators = ["+","=", "-", "÷", "x", "c", "x²", "√"]
+operators = ["6", "7", "8", "9", "2", "3", "4", "5", "0", "1", "+","=", "-", "÷", "x", "c", "x²", "√"]
 for ope in operators:
     button = tk.Button(root, text=f"{ope}", width=4, height=2, font=("", 30))
     button.grid(row=r, column=c)
