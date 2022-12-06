@@ -55,6 +55,7 @@ if __name__ == '__main__':
 
 
     #実装できなかった部分
+    #ランダムな場所に色の違う2ブロック生成し、1つのブロックを踏むともう一つの色の違うブロックにワープする設定
     ''''  
     wx, wy = random.randint(1, 5)*100, random.randint(1, 5)*100
     wwx, wwy = random.randint(1, 5)*100, random.randint(1, 5)*100
