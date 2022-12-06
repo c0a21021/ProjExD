@@ -9,8 +9,8 @@ def key_down(event):
          mm.show_maze(canvas, maze_list)    
          mx, my = 1, 1
          cx, cy = mx * 100 + 50, my * 100 + 50
-         canvas.delete("koukaton")
-         canvas.create_image(cx, cy, image = koukaton, tag = "koukaton")
+         canvas.delete("koukaton") #こうかとんの位置を初期化するために画像を再設定するために現在の画像の再設定を行う
+         canvas.create_image(cx, cy, image = koukaton, tag = "koukaton") #画像を再設定する
     else:
         pass  
         
