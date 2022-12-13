@@ -33,6 +33,7 @@ def main():
 
     #練習2
     while True:
+        clock = pg.time.Clock()
         scrn_sfc.blit(pgbg_sfc, pgbg_rect)
 
         #練習4
@@ -51,7 +52,11 @@ def main():
             if event.type == pg.QUIT:
                 return
         scrn_sfc.blit(bomb_sfc,bomb_rct)
+        
+        vx, vy = +1, +1
+        bomb_rct.move_ip(vx, vy)
         pg.display.update()
+        clock.tick(1000)
 
 if __name__ == '__main__':
     main()
