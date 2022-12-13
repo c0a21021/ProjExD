@@ -28,24 +28,45 @@ def main():
     scrn_sfc.blit(bomb_sfc,bomb_rct)
     
 
-
+    def check_bound(obj_rct, scr_rct):
+        #第1引数:こうかとんrectまたは爆弾rect
+        #第2引数:スクリーンrect
+        #範囲内:+1, 範囲外:-1
+        yoko, tate = +1, +1
+        if obj_rct.left < scr_rct.left or scr_rct.right < obj_rct.right:
+            yoko = -1
+        if obj_rct.top < scr_rct.left or scr_rct.bottom < obj_rct.bottom:
+            tate = -1
+        return yoko, tate
 
 
     #練習2
+    vx, vy = +1, +1
     while True:
         clock = pg.time.Clock()
         scrn_sfc.blit(pgbg_sfc, pgbg_rect)
 
         #練習4
         key_dict = pg.key.get_pressed() #辞書型
-        if key_dict[pg.K_UP] == True:
+        if key_dict[pg.K_UP]:
             tori_rct.centery -= 1
-        elif key_dict[pg.K_DOWN] == True:
+        elif key_dict[pg.K_DOWN]:
             tori_rct.centery += 1
-        elif key_dict[pg.K_LEFT] == True:
+        elif key_dict[pg.K_LEFT]:
             tori_rct.centerx -= 1
-        elif key_dict[pg.K_RIGHT] == True:
+        elif key_dict[pg.K_RIGHT]:
             tori_rct.centerx += 1
+
+        if check_bound(tori_rct, scrn_rct) != (+1, +1):
+            #どこかしらがはみ出していたら
+            if key_dict[pg.K_UP]:
+                tori_rct.centery += 1
+            elif key_dict[pg.K_DOWN]:
+                tori_rct.centery -= 1
+            elif key_dict[pg.K_LEFT]:
+                tori_rct.centerx += 1
+            elif key_dict[pg.K_RIGHT]:
+                tori_rct.centerx -= 1            
         scrn_sfc.blit(tori_sfc, tori_rct)
 
         for event in pg.event.get():
@@ -53,8 +74,17 @@ def main():
                 return
         scrn_sfc.blit(bomb_sfc,bomb_rct)
         
-        vx, vy = +1, +1
         bomb_rct.move_ip(vx, vy)
+        yoko, tate = check_bound(bomb_rct, scrn_rct)
+        vx *= yoko
+        vy *= tate
+        bomb_rct.move_ip(vx, vy)
+        scrn_sfc.blit(bomb_sfc,bomb_rct)
+        
+        #練習8
+        if tori_rct.colliderect(bomb_rct):
+            return
+
         pg.display.update()
         clock.tick(1000)
 
