@@ -121,9 +121,7 @@ def main():
     while True:
         etime = time.time()  #現在時間を随時更新
         scr.blit()
-
-
-
+        
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 return
@@ -153,7 +151,6 @@ def main():
                 bkd_lst.remove(bkd_lst[i]) #無敵のこうかとんと当たった際爆弾を消す
         pg.display.update()
         clock.tick(1000)
-
 
 
 if __name__ == "__main__":
