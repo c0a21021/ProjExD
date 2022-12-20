@@ -108,13 +108,11 @@ def main():
         
         
         #練習8
-        if tori_rct.colliderect(bomb_rct):
+        if tori_rct.colliderect(bomb_rct) and tori_rct.colliderect(bomb3_rct):
             return
+            
         if tori_rct.colliderect(bomb2_rct):
             flag = True
-        
-        if tori_rct.colliderect(bomb3_rct):
-            return
 
         if flag == True: #青い爆弾に当たった時の処理
             bomb3_rct.move_ip(v3x, v3y)
