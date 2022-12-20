@@ -1,6 +1,5 @@
 import os
 import time
-import time
 import pygame as pg
 import random
 import sys
@@ -100,7 +99,7 @@ def main():
     clock =pg.time.Clock()
 
     #練習1
-    scr = Screen("逃げろ！こうかとん", (1600, 900), "fig/pg_bg.jpg")
+    scr = Screen("負けるな！こうかとん", (1600, 900), "fig/pg_bg.jpg")
 
     # 練習３
     kkt = Bird("fig/6.png", 2.0, (900, 400))
@@ -121,7 +120,7 @@ def main():
     while True:
         etime = time.time()  #現在時間を随時更新
         scr.blit()
-        
+
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 return
