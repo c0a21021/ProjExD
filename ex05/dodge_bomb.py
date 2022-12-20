@@ -1,3 +1,6 @@
+import os
+import time
+import time
 import pygame as pg
 import random
 import sys
@@ -65,6 +68,19 @@ class Bomb:
         self.vy *= tate
         self.blit(scr) 
 
+    
+main_dir = os.path.split(os.path.abspath(__file__))[0]
+def load_sound(file):
+    if not pg.mixer:
+        return None
+    file = os.path.join(main_dir, "data", file)
+    try:
+        sound = pg.mixer.Sound(file)
+        return sound
+    except pg.error:
+        print("Warning, unable to load, %s" % file)
+    return None
+
 
 def check_bound(obj_rct, scr_rct):
     """
@@ -90,27 +106,51 @@ def main():
     kkt = Bird("fig/6.png", 2.0, (900, 400))
     kkt.update(scr)
 
+    #BGM設定
+    if pg.mixer:
+        music = os.path.join(main_dir, "data", "house_lo.wav")
+        pg.mixer.music.load(music)
+        pg.mixer.music.play(-1)
+
     # 練習５
     bkd_lst = []
-    for i in range(5):
-        bkd = Bomb((255, 0, 0), 10, (+1, +1), scr)
-        bkd_lst.append(bkd)
-    #bkd.update(scr)
+    add_flag = False #爆弾を追加するための判断フラッグ
+    invi_flag = False #
 
-    # 練習２
+    stime =  time.time() ##ゲーム開始時の時間を取得
     while True:
+        etime = time.time()  #現在時間を随時更新
         scr.blit()
+
+
 
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 return
 
         kkt.update(scr)
-        for i in range(5):
-            bkd_lst[i].update(scr)
-            if kkt.rct.colliderect(bkd_lst[i].rct):
-                return
+        if int(etime - stime) % 2 ==0 and not add_flag:
+            add_flag = True
+            bkd = Bomb((255, 0, 0), 10, (+1, +1), scr)
+            bkd_lst.append(bkd)
+        elif not int(etime - stime) % 2 ==0:
+            add_flag = False
 
+        key_dct = pg.key.get_pressed()
+        if key_dct[pg.K_SPACE]:
+            invi_flag =True
+            kkt = Bird("fig/9.png", 2.0, (900, 400))
+        else:
+            invi_flag = False
+
+        #核爆弾の処理
+        for i in range(len(bkd_lst)):
+            bkd_lst[i].update(scr)
+            if kkt.rct.colliderect(bkd_lst[i].rct) and not invi_flag:
+                return
+        for i in range(len(bkd_lst)):
+            if kkt.rct.colliderect(bkd_lst[i].rct) and invi_flag:
+                bkd_lst.remove(bkd_lst[i]) #無敵のこうかとんと当たった際爆弾を消す
         pg.display.update()
         clock.tick(1000)
 
